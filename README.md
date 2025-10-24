@@ -1,6 +1,7 @@
 # 🌟 StarInvs
 
 **StarInvs** is a **PaperMC plugin** (Minecraft 1.21.4+) that introduces a custom system to create your custom inventory paired with buttons, backpacks, locked slots and more!
+
 ---
 
 ## 🧠 Requirements
