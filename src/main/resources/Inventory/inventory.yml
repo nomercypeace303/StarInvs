@@ -1,0 +1,18 @@
+Components:
+  1:
+    Type: button
+    Attributes:
+      Slot: 9
+      Item:
+        Type: brick
+        Name: "<!i><gold>🔒 <red>Locked <white>slot"
+        Lore:
+          - "<gray>this is a locked slot"
+          - "<gray>equip a <!i><aqua>backpack <i><gray>to unlock"
+        CustomModelData: 100
+      Locked: true
+      OnInteraction:
+        Left:
+          Commands:
+            - "tp %player% 0 70 0"
+            - "playsound minecraft:block.note_block.harp ambient %player%"

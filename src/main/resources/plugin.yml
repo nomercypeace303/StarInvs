@@ -1,0 +1,7 @@
+name: StarInvs
+version: '1.0'
+main: me.mercy.starInvs.StarInvs
+api-version: '1.21'
+commands:
+  starinvs:
+    aliases: [invs]

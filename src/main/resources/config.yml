@@ -1,0 +1,7 @@
+Info:
+  Firstload: true
+  Version: "1.0-Beta"
+Settings:
+  Inventory: "Inventory/inventory.yml"
+  Language: "Languages/EN_en.yml"
+  SpamThreshold: 1000

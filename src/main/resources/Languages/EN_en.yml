@@ -1,0 +1,13 @@
+help:
+  - "[<blue>StarInvs<white>] > here's all the commands that the plugin provides:"
+  - "/starinvs help <blue>→<white> send you a list of all the commands"
+  - "/starinvs reload <blue>↴"
+  - "    all <blue>→<white> reloads all the files"
+  - "    config <blue>→<white> reloads the config file"
+  - "    language <blue>→<white> reloads the language file"
+  - "    inventory <all/self> <blue>→<white> reloads the inventory file"
+  - "Version: <blue>%version% | Credits: NoMercyPeace"
+permissiondenied: "<red>Non hai il permesso!"
+unknowncommand: "<red>[StarInvs] [error] > unknown command!"
+reloadsuccess: "<green>[StarInvs] [success] > reloaded successfully: %reloadedfile%!"
+reloadfail: "<red>[StarInvs] [error] > error during reloading: %reloadedfile%"
