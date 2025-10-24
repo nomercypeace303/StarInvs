@@ -18,7 +18,7 @@
 2. Drop the `.jar` file into your server’s `plugins/` folder.  
 3. Start the server to generate the config files.  
 4. Edit the YAML files to your liking.  
-5. Reload using `/invs reload`.
+5. Reload using `/invs reload all`.
 
 ---
 
@@ -26,6 +26,6 @@
 
 | Command | Description | Permission |
 |----------|--------------|------------|
-| `/invs` | Opens the main menu | `starinvs.use` |
-| `/invs reload` | Reloads the plugin configuration | `starinvs.reload` |
-| `/invs reload language` | Reloads the message file | `starinvs.reload.language` |
+| `/invs` | Send you a list of all the commands | `starinvs.use` |
+| `/invs reload all` | Reloads all of the configurations | `starinvs.reload` |
+
