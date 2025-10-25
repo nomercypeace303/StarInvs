@@ -1,5 +1,6 @@
 package me.mercy.starInvs.Listeners;
 
+import me.mercy.starInvs.Inventory.Button;
 import me.mercy.starInvs.Inventory.Globe;
 import me.mercy.starInvs.Inventory.Inventory;
 import me.mercy.starInvs.StarInvs;
@@ -23,42 +24,40 @@ public class onInventoryClick implements Listener {
         if (event.getClickedInventory().getType() != InventoryType.PLAYER) return;
 
         int slot = event.getSlot();
-        int spamThreshold = StarInvs.getPlugin().getConfig().getInt("Settings.SpamThreshold", 1000); // default 200ms
+        int spamThreshold = StarInvs.getPlugin().getConfig().getInt("Settings.SpamThreshold", 1000);
 
-        // Blocca slot protetti
-        if (Inventory.blockedSlots.contains(slot)) {
-            event.setCancelled(true);
+        if (player.getGameMode().toString().equals("SURVIVAL") || player.getGameMode().toString().equals("ADVENTURE") ) {
+            if (Inventory.blockedSlots.contains(slot)) {
+                event.setCancelled(true);
+            }
+
+            boolean isRightClick = event.getClick().isRightClick();
+            boolean isLeftClick = event.getClick().isLeftClick();
+
+            Globe globe = Button.onInteractionCommand.stream()
+                    .filter(g -> g.getSlot() == slot && (
+                            (g.isType() && isRightClick) ||
+                                    (!g.isType() && isLeftClick)
+                    ))
+                    .findFirst()
+                    .orElse(null);
+
+            if (globe == null) return;
+
+            long now = System.currentTimeMillis();
+            Map<Integer, Long> playerClicks = lastClick.computeIfAbsent(player.getUniqueId(), k -> new HashMap<>());
+            long last = playerClicks.getOrDefault(slot, 0L);
+            if (now - last < spamThreshold) {
+                event.setCancelled(true);
+                return;
+            }
+            playerClicks.put(slot, now);
+
+            event.setCancelled(true); // importante per bloccare il click nativo
+
+            for (String cmd : globe.getList()) {
+                player.performCommand(cmd.replace("%player%", player.getName()));
+            }
         }
-
-        // Trova se c’è un’interazione registrata per quello slot e tipo di click
-        boolean isRightClick = event.getClick().isRightClick();
-        boolean isLeftClick = event.getClick().isLeftClick();
-
-        Globe globe = Inventory.onInteractionCommand.stream()
-                .filter(g -> g.getSlot() == slot && (
-                        (g.isType() && isRightClick) ||
-                                (!g.isType() && isLeftClick)
-                ))
-                .findFirst()
-                .orElse(null);
-
-        if (globe == null) return;
-
-        // Anti-spam
-        long now = System.currentTimeMillis();
-        Map<Integer, Long> playerClicks = lastClick.computeIfAbsent(player.getUniqueId(), k -> new HashMap<>());
-        long last = playerClicks.getOrDefault(slot, 0L);
-        if (now - last < spamThreshold) return;
-        playerClicks.put(slot, now);
-
-        // Esegui i comandi
-        for (String cmd : globe.getList()) {
-            player.performCommand(cmd.replace("%player%", player.getName()));
-        }
-    }
-
-    @EventHandler
-    public void onQuit(PlayerQuitEvent event) {
-        lastClick.remove(event.getPlayer().getUniqueId());
     }
 }

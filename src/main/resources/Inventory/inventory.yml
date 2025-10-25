@@ -11,8 +11,25 @@ Components:
           - "<gray>equip a <!i><aqua>backpack <i><gray>to unlock"
         CustomModelData: 100
       Locked: true
-      OnInteraction:
-        Left:
-          Commands:
-            - "tp %player% 0 70 0"
-            - "playsound minecraft:block.note_block.harp ambient %player%"
+    OnInteraction:
+      Left:
+        Commands:
+          - "tp %player% 0 70 0"
+          - "playsound minecraft:block.note_block.harp ambient %player%"
+      Right:
+        Commands:
+          - "tp %player% 0 70 0"
+          - "playsound minecraft:block.note_block.harp ambient %player%"
+  2:
+    Type: backpack
+    Attributes:
+      Backpackslot: 34
+      Lockedslots: 9,10,11,12,13,18,19,20,21,22
+      Filelocation: "Backpacks/backpack.yml"
+      Item: #l'item per indicare gli slot bloccati
+        Type: brick
+        Name: "<!i><gold>🔒 <red>Locked <white>slot"
+        Lore:
+          - "<gray>this is a locked slot"
+          - "<gray>equip a <!i><aqua>backpack <i><gray>to unlock"
+        CustomModelData: 100

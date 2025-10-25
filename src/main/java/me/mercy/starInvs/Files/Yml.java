@@ -71,11 +71,16 @@ public class Yml {
      * Carica normalmente il file senza toccare i default.
      */
     public void loadAll() throws IOException, InvalidConfigurationException {
+        if (!rawFile.exists()) {
+            plugin.getLogger().warning("File not found, creating default: " + rawFile.getPath());
+            plugin.saveResource(rawFile.getName(), false); // copia dal jar
+        }
+
         if (rawFile.exists()) {
             loadFile();
             loadSpecifics();
         } else {
-            plugin.getLogger().severe("Couldn't find file: " + rawFile.getPath());
+            plugin.getLogger().severe("Failed to create file: " + rawFile.getPath());
         }
     }
 
@@ -168,12 +173,17 @@ public class Yml {
      * Ottiene una sezione del file, con controllo null.
      */
     public ConfigurationSection getSection(String inFilePath) {
+        if (ymlFile == null) {
+            plugin.getLogger().severe("YML file not loaded for: " + name);
+            return null;
+        }
         ConfigurationSection section = ymlFile.getConfigurationSection(inFilePath);
         if (section == null) {
             plugin.getLogger().severe("The section '" + inFilePath + "' does not exist in file: " + name);
         }
         return section;
     }
+
 
     /**
      * Ottiene un intero dal file con log di errore se mancante.

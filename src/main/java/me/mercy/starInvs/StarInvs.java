@@ -17,6 +17,7 @@ public final class StarInvs extends JavaPlugin {
     public static Yml config = null;
     public static Yml inventory = null;
     public static Yml language = null;
+    public static Yml backpack = null;
 
     private void firstLoad(){
         // copia il file dal jar solo se non esiste

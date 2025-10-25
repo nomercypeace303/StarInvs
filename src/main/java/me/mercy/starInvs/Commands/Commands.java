@@ -48,11 +48,11 @@ public class Commands extends BaseCommand {
             }
             MyMessages.RELOADSUCCESS.send(player, "player", player.getName(),
                     "version", plugin.getConfig().getString("Info.Version"),
-                    "reloadedfile", plugin.getConfig().getString("Settings.Language"));
+                    "reloadedfile", plugin.getConfig().getString("Settings.Inventory"));
         } else {
             MyMessages.RELOADFAIL.send(player, "player", player.getName(),
                     "version", plugin.getConfig().getString("Info.Version"),
-                    "reloadedfile", plugin.getConfig().getString("Settings.Language"));
+                    "reloadedfile", plugin.getConfig().getString("Settings.Inventory"));
         }
 
     }
@@ -65,11 +65,11 @@ public class Commands extends BaseCommand {
             Inventory.reloadInventory(player);
             MyMessages.RELOADSUCCESS.send(player, "player", player.getName(),
                     "version", plugin.getConfig().getString("Info.Version"),
-                    "reloadedfile", plugin.getConfig().getString("Settings.Language"));
+                    "reloadedfile", plugin.getConfig().getString("Settings.Inventory"));
         } else {
             MyMessages.RELOADFAIL.send(player, "player", player.getName(),
                     "version", plugin.getConfig().getString("Info.Version"),
-                    "reloadedfile", plugin.getConfig().getString("Settings.Language"));
+                    "reloadedfile", plugin.getConfig().getString("Settings.Inventory"));
         }
 
     }
@@ -83,11 +83,11 @@ public class Commands extends BaseCommand {
             }
             MyMessages.RELOADSUCCESS.send(player, "player", player.getName(),
                     "version", plugin.getConfig().getString("Info.Version"),
-                    "reloadedfile", plugin.getConfig().getString("Settings.Language"));
+                    "reloadedfile", plugin.getConfig().getString("Settings.Inventory"));
         } else {
             MyMessages.RELOADFAIL.send(player, "player", player.getName(),
                     "version", plugin.getConfig().getString("Info.Version"),
-                    "reloadedfile", plugin.getConfig().getString("Settings.Language"));
+                    "reloadedfile", plugin.getConfig().getString("Settings.Inventory"));
         }
 
     }
@@ -116,11 +116,11 @@ public class Commands extends BaseCommand {
         if(StarInvs.config.reload()){
             MyMessages.RELOADSUCCESS.send(player, "player", player.getName(),
                     "version", plugin.getConfig().getString("Info.Version"),
-                    "reloadedfile", plugin.getConfig().getString("Settings.Language"));
+                    "reloadedfile", "config.yml");
         } else {
             MyMessages.RELOADFAIL.send(player, "player", player.getName(),
                     "version", plugin.getConfig().getString("Info.Version"),
-                    "reloadedfile", plugin.getConfig().getString("Settings.Language"));
+                    "reloadedfile", "config.yml");
         }
     }
 
@@ -131,6 +131,4 @@ public class Commands extends BaseCommand {
         onReloadInventory(player);
         onReloadLanguage(player);
     }
-
-
 }
